@@ -1,0 +1,7 @@
+{
+  "name": "KrScraper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
