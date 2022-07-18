@@ -1,0 +1,30 @@
+.full {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full>div {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: solid #0d6efd;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    animation: rotate 2s infinite;
+    translate: 0 -10vh;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

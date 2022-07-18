@@ -6,7 +6,7 @@ import { ISecondaryData } from "../components/Interfaces/PrincipalInterface";
 import { networkCheck, request } from "../components/functions/request";
 import { IonPage } from "@ionic/react";
 import { Loading } from "../components/Loading/Loading";
-
+import "./styles.css"
 //Initialization page 
 const Page: FC = () => {
 
@@ -14,6 +14,7 @@ const Page: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [status, setStatus] = useState<boolean | null>(null);
   const [statusn, setStatusn] = useState<boolean>(false)
+
   useEffect(() => {
     networkCheck(setStatus, status);
     if (values === null) {
@@ -29,15 +30,21 @@ const Page: FC = () => {
   const req2 = (page: number): void => request(page, setValues, setPage, setStatusn)
 
   return (
-    <IonPage>
-      <NavBar />
-      {
-        values === null || statusn ?
-          <Loading /> :
-          <Body values={values?.information} />
-      }
-      <Footer last_index={values?.last_page || 0} change={change} page={page} />
-    </IonPage>
+    !status ?
+      <IonPage>
+        <p className="display-6 text-light check">Please check your connexion</p>
+        <Loading />
+      </IonPage>
+      :
+      <IonPage>
+        <NavBar />
+        {
+          values === null || statusn ?
+            <Loading /> :
+            <Body values={values?.information} />
+        }
+        <Footer last_index={values?.last_page || 0} change={change} page={page} />
+      </IonPage>
   );
 };
 

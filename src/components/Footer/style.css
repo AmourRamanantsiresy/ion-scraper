@@ -1,0 +1,14 @@
+.footer {
+    position: absolute;
+    top: 90vh;
+    height: 15vh;
+}
+
+.mrg-2 {
+    position: relative;
+    left: -1%;
+}
+
+.w-10 {
+    width: 20vw !important;
+}

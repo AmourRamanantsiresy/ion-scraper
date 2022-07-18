@@ -1,0 +1,8 @@
+.check {
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
