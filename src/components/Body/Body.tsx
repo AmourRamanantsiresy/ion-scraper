@@ -1,5 +1,7 @@
+import { IonIcon } from "@ionic/react";
 import { FC, useRef, useState } from "react";
 import { IPrimaryData } from "../Interfaces/PrincipalInterface";
+import { PrimaryView } from "./PrimaryView";
 import "./style.css";
 
 export const Body: FC<{ values: (IPrimaryData[] | undefined) }> = ({ values }) => {
@@ -19,19 +21,14 @@ export const Body: FC<{ values: (IPrimaryData[] | undefined) }> = ({ values }) =
     return (
         <div className="">
             <div className="fullscreen" ref={screen}>
-                <div className="d-flex w-100 justify-content-between p-2">
-                    <button onClick={() => window.location.href = valueToShow?.href || ""} className="btn btn-outline-primary">Web page</button>
-                    <button onClick={() => close()} className="btn btn-outline-primary">close</button>
+                <div className="d-flex w-100 p-2 justify-content-end">
+                    {
+                        valueToShow?.flag === "urgent" &&
+                        <i className="text-danger topleft">Urgent</i>
+                    }
+                    <i onClick={() => close()} className="text-danger mc-2 fa-regular fa-circle-xmark sc-2"></i>
                 </div>
-                <div className="mt-5 text-light container position-5">
-                    <p className="text-light display-6">{valueToShow?.title}</p>
-                    <p className="text-primary">Company:</p>
-                    <p className="left-m">{valueToShow?.company}</p>
-                    <p className="text-primary">Contract:</p>
-                    <p className="left-m">{valueToShow?.contract}</p>
-                    <p className="text-primary">Description:</p>
-                    <p className="left-m">{valueToShow?.description}</p>
-                </div>
+                <InItems valueToShow={valueToShow} />
             </div>
             <div className="overflowPos">
                 {
@@ -42,28 +39,21 @@ export const Body: FC<{ values: (IPrimaryData[] | undefined) }> = ({ values }) =
     );
 }
 
-const PrimaryView: FC<{ values: IPrimaryData, screen: React.RefObject<HTMLDivElement>, setValues: React.Dispatch<React.SetStateAction<IPrimaryData | undefined>> }> = (props) => {
-    const { values, screen, setValues } = props;
-    const [state, setState] = useState<boolean>(false);
-    const open = () => {
-        if (screen.current != null) {
-            setValues(values);
-            screen.current.style.visibility = 'visible';
-        }
-        screen.current?.classList.remove("fullscreenClose")
-        screen.current?.classList.add("fullscreenOpen")
-    }
+const InItems: FC<{ valueToShow: (IPrimaryData | undefined) }> = ({ valueToShow }) => {
     return (
-        <div>
-            <div onClick={() => open()} className="m-2 bg-dark items text-light p-2 rounded-3">
-                <p className="fs-6">{values.title}</p>
-                <div className="d-flex justify-content-between">
-                    <small>{values.company} | {values.contract}</small>
-                </div>
+        <div className="mt-5 text-light container position-5">
+            <p className="text-light fs-5">{valueToShow?.title}</p>
+            {valueToShow?.limit_date != null && <p>{valueToShow.limit_date}</p>}
+            <hr className="mb-5" />
+            <div className="d-flex w-100 justify-content-between">
+                <p className="text-primary"><i className="fa fa-building"></i> Company:</p>
+                <p onClick={() => window.location.href = valueToShow?.href || ""} className="text-primary"><i className="mrC-2 fa fa-globe"></i>Web page</p>
             </div>
+            <p className="left-m">{valueToShow?.company}</p>
+            <p className="text-primary"><i className="fa fa-file-signature"></i> Contract:</p>
+            <p className="left-m">{valueToShow?.contract}</p>
+            <p className="text-primary"><i className="fa fa-circle-info"></i> Description:</p>
+            <p className="left-m">{valueToShow?.description}</p>
         </div>
     );
 }
-
-
-//

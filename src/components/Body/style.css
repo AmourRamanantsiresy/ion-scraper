@@ -33,6 +33,7 @@
     background: black;
     visibility: hidden;
     opacity: 0;
+    overflow-y: scroll;
 }
 
 .fullscreenOpen {
@@ -91,5 +92,29 @@
 
 
 .items {
+    position: relative;
     cursor: pointer;
+}
+
+.urgent {
+    position: absolute;
+    right: 1%;
+    bottom: 2%;
+}
+
+.sc-2 {
+    scale: 1.5;
+}
+
+.mc-2 {
+    margin-right: .12rem;
+}
+
+.mrC-2 {
+    margin-right: .20rem;
+}
+
+.topleft {
+    position: absolute;
+    left: 2%;
 }

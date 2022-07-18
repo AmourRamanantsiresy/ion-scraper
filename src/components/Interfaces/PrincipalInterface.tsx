@@ -5,6 +5,7 @@ export interface IPrimaryData {
     contract: string;
     description: string;
     href: string;
+    flag: "urgent" | null;
     limit_date: string | null;
     title: string;
 }
